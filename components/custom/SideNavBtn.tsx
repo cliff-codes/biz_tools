@@ -18,7 +18,7 @@ const SideNavBtn = ({ btnName, btnIcon, route, counter }: BtnProps) => {
     return (
         <Link href={`${route}`}>
             <button
-                className={`w-full flex gap-4 py-3 px-4 place-items-center  ${
+                className={`w-full flex gap-4 py-3 px-8 place-items-center  ${
                     isActive ? 'bg-gradient-to-r text-[#605BFF]' : 'text-gray-500'
                 } hover:bg-gradient-to-r from-[#e5e4ff] to-white transition-all duration-800 ease-in-out `}
             >

@@ -1,10 +1,9 @@
 'use client';
 import React from 'react';
 import Logo from './Logo';
-import { Bell, LayoutGrid, Mail, Mails, Ticket } from 'lucide-react';
+import { Bell, LayoutGrid } from 'lucide-react';
 import SideNavBtn from './SideNavBtn';
 import { usePathname } from 'next/navigation';
-import InvoiceIcon from './icons/InvoiceIcon';
 import { FaTicketSimple } from 'react-icons/fa6';
 import { IoLogOut, IoMail } from 'react-icons/io5';
 import Image from 'next/image';
@@ -15,7 +14,7 @@ const SideNav = () => {
     return (
         <nav className="w-[300px] h-full flex flex-col justify-between py-2 bg-white">
             <div className="w-full flex flex-col gap-3">
-                <div className="w-full flex flex-col gap-8 place-items-center justify-center my-8">
+                <div className="w-full flex flex-col gap-4 place-items-center justify-center my-8">
                     <Logo />
 
                     <h1 className="font-medium text-2xl">Biz Toolz</h1>

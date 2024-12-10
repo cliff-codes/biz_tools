@@ -33,9 +33,9 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" className={`${nunito.className}`}>
             <body
-                className={`${nunito.variable} ${nunito.variable} antialiased text-slate-800 flex min-h-screen bg-slate-100`}
+                className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased text-slate-800 flex min-h-screen bg-slate-100`}
             >
                 <div className="hidden md:flex h-svh">
                     <SideNav />
