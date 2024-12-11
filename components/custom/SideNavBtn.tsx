@@ -22,16 +22,18 @@ const SideNavBtn = ({ btnName, btnIcon, route, counter }: BtnProps) => {
                     isActive ? 'bg-gradient-to-r text-[#605BFF]' : 'text-gray-500'
                 } hover:bg-gradient-to-r from-[#e5e4ff] to-white transition-all duration-800 ease-in-out `}
             >
-                <div className={`${isActive && 'text-[#605BFF]'}`}>{btnIcon}</div>
+                <div className="flex relative">
+                    <div className={`${isActive && 'text-[#605BFF]'}`}>{btnIcon}</div>
+                    {counter && (
+                        <div className="text-xs w-[15px] h-[15px] bg-rose-300 font-semibold text-rose-500 rounded-full absolute right-0 -top-1">
+                            {counter}
+                        </div>
+                    )}
+                </div>
                 <div className="font-semibold flex gap-3 place-items-center">
                     <div className="hidden lg:flex transition-all duration-400 ease-in-out">
                         {btnName}
                     </div>
-                    {counter && (
-                        <div className="text-xs px-2 p-1 bg-red-200 text-rose-500 rounded-full">
-                            {counter}
-                        </div>
-                    )}
                 </div>
             </button>
         </Link>
