@@ -8,7 +8,7 @@ const Login = () => {
     return (
         <main className="bg-white/90 w-full h-full">
             <div className="w-full h-screen flex flex-col place-items-center justify-center gap-6">
-                <Logo />
+                <Logo size={40} />
                 <Button className=" w-[200px] h-[44px] bg-[#F7F7F8] text-slate-800 font-semibold hover:bg-slate-300 flex mt-4">
                     <GoogleIcon />
                     Google

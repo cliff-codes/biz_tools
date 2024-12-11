@@ -37,7 +37,7 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased text-slate-800 flex min-h-screen bg-slate-100`}
             >
-                <div className="hidden md:flex h-svh">
+                <div className=" h-svh">
                     <SideNav />
                 </div>
                 {children}

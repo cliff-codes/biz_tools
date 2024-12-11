@@ -24,7 +24,9 @@ const SideNavBtn = ({ btnName, btnIcon, route, counter }: BtnProps) => {
             >
                 <div className={`${isActive && 'text-[#605BFF]'}`}>{btnIcon}</div>
                 <div className="font-semibold flex gap-3 place-items-center">
-                    <div>{btnName}</div>
+                    <div className="hidden lg:flex transition-all duration-400 ease-in-out">
+                        {btnName}
+                    </div>
                     {counter && (
                         <div className="text-xs px-2 p-1 bg-red-200 text-rose-500 rounded-full">
                             {counter}
