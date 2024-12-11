@@ -1,11 +1,9 @@
 import Link from 'next/link';
 import React from 'react';
 import { Button } from '../ui/button';
+import { GenereateButtonProps } from '@/types';
 
-type Props = {
-    route: string;
-};
-const GenerateButton = ({ route }: Props) => {
+const GenerateButton = ({ route }: GenereateButtonProps) => {
     return (
         <Link href={route}>
             <Button className="bg-[#6e69ff] font-semibold hover:bg-[#433df3]">Generate</Button>

@@ -55,7 +55,7 @@ const SideNav = () => {
                     />
 
                     <SideNavBtn
-                        route="/mails"
+                        route="/mail"
                         btnIcon={
                             <IoMail
                                 size={'28px'}
@@ -71,7 +71,7 @@ const SideNav = () => {
                     />
 
                     <SideNavBtn
-                        route="/notifications"
+                        route="/notification"
                         btnIcon={
                             <Bell
                                 fill="True"

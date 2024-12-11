@@ -1,17 +1,10 @@
 'use client';
 import React from 'react';
-import { LayoutGrid } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { SideNavBtnProps } from '@/types';
 
-type BtnProps = {
-    btnName: string;
-    btnIcon: React.ReactNode;
-    route?: string;
-    counter?: number;
-};
-
-const SideNavBtn = ({ btnName, btnIcon, route, counter }: BtnProps) => {
+const SideNavBtn = ({ btnName, btnIcon, route, counter }: SideNavBtnProps) => {
     const pathName = usePathname();
     const isActive = route === pathName;
 
