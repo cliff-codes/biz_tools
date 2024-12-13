@@ -12,11 +12,11 @@ const SideNav = () => {
     const pathName = usePathname();
 
     return (
-        <nav className="w-[100px] lg:w-[300px] transition-all duration-400 ease-in-out h-full flex flex-col justify-between py-2 bg-white">
+        <nav className="w-full h-full flex flex-col justify-between py-2 bg-white">
             <div className="w-full flex flex-col gap-3">
                 <div className="w-full flex flex-col gap-4 place-items-center justify-center my-8">
                     <Logo size={60} />
-                    <h1 className="text-md font-semibold md:text-2xl text-center transition-all duration-400 ease-in-out">
+                    <h1 className="text-md font-semibold md:text-2xl text-center transition-all duration-2200 ease-in-out">
                         Biz Toolz
                     </h1>
                 </div>

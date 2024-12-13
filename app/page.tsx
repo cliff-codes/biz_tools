@@ -5,7 +5,7 @@ export default function Home() {
     return (
         <main className="w-full flex flex-col px-10 gap-4 pt-3">
             <div className="flex w-full place-items-center justify-between pt-8 font-medium">
-                <h1 className="text-xl md:text-2xl font-semibold text-slate-800 ">
+                <h1 className="text-lg sm:text-xl md:text-2xl font-semibold text-slate-800 ">
                     Activities Preview
                 </h1>
 

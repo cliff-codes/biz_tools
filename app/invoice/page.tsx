@@ -3,7 +3,7 @@ import CreateInvoice from './CreateInvoice';
 
 const InvoicePage = () => {
     return (
-        <main className="w-full flex gap-4 p-5">
+        <div className="flex-1 flex gap-4 p-5">
             {/* invoice form */}
             {/* invoice preview */}
             {/* invoice actions */}
@@ -35,10 +35,10 @@ const InvoicePage = () => {
             </div>
 
             {/* preview */}
-            <div className="hidden lg:flex">
+            <div className="hidden xl:flex flex-1">
                 <h1>Invoice Preview</h1>
             </div>
-        </main>
+        </div>
     );
 };
 
