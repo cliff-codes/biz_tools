@@ -27,7 +27,7 @@ const ProductsTable = ({ handleShowForm }: { handleShowForm: () => void }) => {
     return (
         <Table className="w-full">
             {/* <TableCaption>A list of your recent invoices.</TableCaption> */}
-            <TableHeader className="bg-[#605BFF]">
+            <TableHeader className="bg-[#4e49e49c]">
                 <TableRow>
                     <TableHead className="w-[100px] text-white/90 font-semibold">
                         Descirption

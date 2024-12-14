@@ -157,6 +157,16 @@ const CreateInvoice = () => {
                             onSubmit={() => console.log('submit form')}
                         />
                     )}
+
+                    <div className="flex justify-center">
+                        <Button
+                            type="submit"
+                            className="bg-[#605BFF] hover:bg-[#4b46e0]"
+                            disabled={Object.keys(errors).length > 0}
+                        >
+                            Create Invoice
+                        </Button>
+                    </div>
                 </form>
             </div>
         </div>
