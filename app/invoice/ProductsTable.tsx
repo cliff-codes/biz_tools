@@ -16,6 +16,7 @@ import { useInvoiceStore } from '@/store/Invoice';
 
 const ProductsTable = () => {
     const products = useInvoiceStore((state) => state.products);
+    const removeProduct = useInvoiceStore((state) => state.removeProduct);
 
     return (
         <Table className="w-full">
@@ -47,7 +48,13 @@ const ProductsTable = () => {
                                     <Button type="button" variant={'outline'}>
                                         edit
                                     </Button>
-                                    <Button type="button" variant={'outline'}>
+                                    <Button
+                                        type="button"
+                                        variant={'outline'}
+                                        onClick={() => {
+                                            removeProduct(index);
+                                        }}
+                                    >
                                         remove
                                     </Button>
                                 </PopoverContent>
