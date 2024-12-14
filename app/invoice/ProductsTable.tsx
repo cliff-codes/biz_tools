@@ -14,7 +14,6 @@ import { Button } from '@/components/ui/button';
 import { Ellipsis } from 'lucide-react';
 import { useInvoiceStore } from '@/store/Invoice';
 import { useRouter } from 'next/navigation';
-import { InvoiceProduct } from '@/types';
 
 const ProductsTable = ({ handleShowForm }: { handleShowForm: () => void }) => {
     const router = useRouter();

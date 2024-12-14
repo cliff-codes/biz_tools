@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,13 +27,16 @@ export function ProductEntryModal({
     const router = useRouter();
     console.log(params.get('modal'));
     const mode = params.get('modal');
+    const id = params.get('id');
 
     const [description, setDescription] = useState('');
     const [rate, setRate] = useState('');
     const [quantity, setQuantity] = useState('');
 
     const addProduct = useInvoiceStore((state) => state.addProduct);
+    const updateProduct = useInvoiceStore((state) => state.updateProduct);
     const totalProducts = useInvoiceStore((state) => state.totalProducts);
+    const productToBeUpdated = useInvoiceStore((state) => state.findProductById(Number(id)));
 
     // Calculate total amount
     const totalAmount = (() => {
@@ -60,6 +63,16 @@ export function ProductEntryModal({
         setRate('');
         setQuantity('');
     };
+
+    // load data from state if edited mode is selected
+    useEffect(() => {
+        console.log('entered effect');
+        if (mode === 'edit' && id !== undefined && productToBeUpdated) {
+            setDescription(productToBeUpdated.description);
+            setRate(productToBeUpdated.rate.toString());
+            setQuantity(productToBeUpdated.quantity.toString());
+        }
+    }, [id]);
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
@@ -146,7 +159,15 @@ export function ProductEntryModal({
                                     });
                                     router.replace('/invoice', undefined);
                                 } else if (mode === 'edit') {
-                                    //edit invoice
+                                    if (!id) return;
+                                    updateProduct(Number(id), {
+                                        id: Number(id),
+                                        description: description,
+                                        rate: parseFloat(rate),
+                                        quantity: parseInt(quantity),
+                                        amount: totalAmount,
+                                    });
+                                    router.replace('/invoice', undefined);
                                 }
                             }}
                         >
