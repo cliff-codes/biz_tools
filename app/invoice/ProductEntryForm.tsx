@@ -11,6 +11,8 @@ import {
     DialogFooter,
 } from '@/components/ui/dialog';
 import { X } from 'lucide-react';
+import { InvoiceProduct } from '@/types';
+import { useInvoiceStore } from '@/store/Invoice';
 
 export function ProductEntryModal({
     isOpen,
@@ -19,11 +21,13 @@ export function ProductEntryModal({
 }: {
     isOpen: boolean;
     onClose: () => void;
-    onSubmit: (data: ProductData) => void;
+    onSubmit: (data: InvoiceProduct) => void;
 }) {
     const [description, setDescription] = useState('');
     const [rate, setRate] = useState('');
     const [quantity, setQuantity] = useState('');
+
+    const addProduct = useInvoiceStore((state) => state.addProduct);
 
     // Calculate total amount
     const totalAmount = (() => {
@@ -121,7 +125,18 @@ export function ProductEntryModal({
                         >
                             Clear
                         </Button>
-                        <Button type="submit" className="w-full bg-[#605BFF] hover:bg-[#5050FF]">
+                        <Button
+                            type="submit"
+                            className="w-full bg-[#605BFF] hover:bg-[#5050FF]"
+                            onClick={() =>
+                                addProduct({
+                                    description,
+                                    rate: parseFloat(rate),
+                                    quantity: parseInt(quantity),
+                                    amount: totalAmount,
+                                })
+                            }
+                        >
                             Add Product
                         </Button>
                     </DialogFooter>
@@ -129,34 +144,4 @@ export function ProductEntryModal({
             </DialogContent>
         </Dialog>
     );
-}
-
-// Usage in a parent component
-export function ParentComponent() {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-
-    const handleSubmit = (productData: any) => {
-        // Handle product submission logic
-        console.log(productData);
-    };
-
-    return (
-        <div>
-            <Button onClick={() => setIsModalOpen(true)}>Add New Product</Button>
-
-            <ProductEntryModal
-                isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                onSubmit={handleSubmit}
-            />
-        </div>
-    );
-}
-
-// TypeScript interface for type safety
-interface ProductData {
-    description: string;
-    rate: number;
-    quantity: number;
-    amount: number;
 }

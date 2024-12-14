@@ -8,3 +8,10 @@ export type SideNavBtnProps = {
 export type GenereateButtonProps = {
     route: string;
 };
+
+export type InvoiceProduct = {
+    description: string;
+    rate?: number;
+    quantity?: number;
+    amount: number;
+};
