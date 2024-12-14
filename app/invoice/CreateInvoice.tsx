@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import ImageFileInput from './ImageFileInput';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -10,6 +10,7 @@ import { DatePickerWithPresets } from '@/components/custom/DatePicker';
 import ProductsTable from './ProductsTable';
 import { Button } from '@/components/ui/button';
 import { PlusIcon } from 'lucide-react';
+import { ProductEntryModal } from './ProductEntryForm';
 const CreateInvoice = () => {
     const {
         register,
@@ -19,6 +20,12 @@ const CreateInvoice = () => {
         resolver: zodResolver(invoiceValidationSchema),
         mode: 'onBlur',
     });
+
+    const [showProductEntryForm, setShowProductEntryForm] = useState(false);
+    const handleShowForm = () => {
+        setShowProductEntryForm(!showProductEntryForm);
+        console.log(showProductEntryForm);
+    };
 
     return (
         <div className="w-full h-full bg-white rounded-md p-4">
@@ -115,7 +122,11 @@ const CreateInvoice = () => {
                     <div>
                         <div className="w-full flex place-items-center justify-between py-1">
                             <h3 className="font-semibold text-[15px] ">Product(s) Description</h3>
-                            <Button type="button" className="bg-[#605BFF] hover:bg-[#4b46e0]">
+                            <Button
+                                type="button"
+                                className="bg-[#605BFF] hover:bg-[#4b46e0]"
+                                onClick={handleShowForm}
+                            >
                                 <PlusIcon />
                             </Button>
                         </div>
@@ -129,6 +140,13 @@ const CreateInvoice = () => {
                             <ProductsTable />
                         </div>
                     </div>
+                    {showProductEntryForm && (
+                        <ProductEntryModal
+                            isOpen={showProductEntryForm}
+                            onClose={handleShowForm}
+                            onSubmit={() => console.log('submit form')}
+                        />
+                    )}
                 </form>
             </div>
         </div>
