@@ -13,19 +13,27 @@ export default function Home() {
             </div>
             <div className="flex flex-col gap-6">
                 <div className="h-[300px] bg-white rounded-xl p-4">
-                    <h1 className="font-semibold w-full border-b  pb-2">Invoice(s)</h1>
+                    <h1 className="text-sm sm:text-base font-semibold w-full border-b  pb-2">
+                        Invoice(s)
+                    </h1>
                     {/* empty invoices if there are none generated */}
                     <div className="w-full h-full flex flex-col gap-2 place-items-center justify-center">
-                        <p className="text-gray-400 text-pretty">No invoices generated yet.</p>
+                        <p className="text-sm sm:text-base text-gray-400 text-pretty">
+                            No invoices generated yet.
+                        </p>
                         <GenerateButton route="/invoice" />
                     </div>
                 </div>
 
                 <div className="h-[300px] bg-white rounded-xl p-4">
-                    <h1 className="font-semibold w-full border-b  pb-2">Mail(s)</h1>
+                    <h1 className="text-sm sm:text-base font-semibold w-full border-b  pb-2">
+                        Mail(s)
+                    </h1>
                     {/* empty invoices if there are none generated */}
                     <div className="w-full h-full flex flex-col gap-2 place-items-center justify-center">
-                        <p className="text-gray-400 text-pretty">No invoices generated yet.</p>
+                        <p className="text:sm sm:text-base text-gray-400 text-pretty">
+                            No invoices generated yet.
+                        </p>
                         <GenerateButton route="/mail" />
                     </div>
                 </div>

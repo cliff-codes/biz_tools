@@ -37,10 +37,10 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased text-slate-800  min-h-screen min-w-screen bg-slate-100 relative`}
             >
-                <div className="fixed left-0 top-0 bottom-0 w-[100px] lg:w-[300px] transition-all duration-duration-2200 ease-in-out">
+                <div className="fixed left-0 top-0 bottom-0 w-[90px] lg:w-[300px] transition-all duration-duration-2200 ease-in-out">
                     <SideNav />
                 </div>
-                <main className="w-full pl-[100px] lg:pl-[300px]">{children}</main>
+                <main className="w-full pl-[90px] lg:pl-[300px]">{children}</main>
             </body>
         </html>
     );

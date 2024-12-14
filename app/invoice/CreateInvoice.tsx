@@ -7,6 +7,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { invoiceValidationSchema } from '@/zodSchemas/InvoiceSchemas';
 import { Input } from '@/components/ui/input';
 import { DatePickerWithPresets } from '@/components/custom/DatePicker';
+import ProductsTable from './ProductsTable';
+import { Button } from '@/components/ui/button';
+import { PlusIcon } from 'lucide-react';
 const CreateInvoice = () => {
     const {
         register,
@@ -19,7 +22,9 @@ const CreateInvoice = () => {
 
     return (
         <div className="w-full h-full bg-white rounded-md p-4">
-            <h1 className="font-semibold text-3xl">Create New Invoice</h1>
+            <h1 className="font-semibold text-lg text-center sm:text-2xl sm:text-left">
+                Create New Invoice
+            </h1>
             <div className="flex flex-col gap-4 mt-8">
                 <ImageFileInput />
                 <form className="w-full flex flex-col gap-5">
@@ -108,11 +113,21 @@ const CreateInvoice = () => {
 
                     {/* products table displaying products the reciepient acquired */}
                     <div>
-                        <h3 className="font-semibold text-[15px] ">Product(s) Description</h3>
+                        <div className="w-full flex place-items-center justify-between py-1">
+                            <h3 className="font-semibold text-[15px] ">Product(s) Description</h3>
+                            <Button type="button" className="bg-[#605BFF] hover:bg-[#4b46e0]">
+                                <PlusIcon />
+                            </Button>
+                        </div>
 
                         {/* products table */}
                         {/* add product form */}
-                        <div className="w-full bg-slate-100 h-[100px]"></div>
+                        {/* <div className="w-full bg-slate-100 h-[100px] flex place-items-center justify-center">
+                            <h4 className="text-gray-500 text-sm">No products</h4>
+                        </div> */}
+                        <div className="overflow-x-auto w-full min-w-[300px] border">
+                            <ProductsTable />
+                        </div>
                     </div>
                 </form>
             </div>
