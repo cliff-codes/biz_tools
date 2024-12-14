@@ -10,9 +10,9 @@ import {
     DialogDescription,
     DialogFooter,
 } from '@/components/ui/dialog';
-import { X } from 'lucide-react';
 import { InvoiceProduct } from '@/types';
 import { useInvoiceStore } from '@/store/Invoice';
+import { useSearchParams, useRouter } from 'next/navigation';
 
 export function ProductEntryModal({
     isOpen,
@@ -23,11 +23,17 @@ export function ProductEntryModal({
     onClose: () => void;
     onSubmit: (data: InvoiceProduct) => void;
 }) {
+    const params = useSearchParams();
+    const router = useRouter();
+    console.log(params.get('modal'));
+    const mode = params.get('modal');
+
     const [description, setDescription] = useState('');
     const [rate, setRate] = useState('');
     const [quantity, setQuantity] = useState('');
 
     const addProduct = useInvoiceStore((state) => state.addProduct);
+    const totalProducts = useInvoiceStore((state) => state.totalProducts);
 
     // Calculate total amount
     const totalAmount = (() => {
@@ -39,12 +45,13 @@ export function ProductEntryModal({
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         onSubmit({
+            id: totalProducts + 1, // increment the product id by 1
             description,
             rate: parseFloat(rate),
             quantity: parseInt(quantity),
             amount: totalAmount,
         });
-        // Optionally reset form or close modal
+        // close modal
         onClose();
     };
 
@@ -128,16 +135,22 @@ export function ProductEntryModal({
                         <Button
                             type="submit"
                             className="w-full bg-[#605BFF] hover:bg-[#5050FF]"
-                            onClick={() =>
-                                addProduct({
-                                    description,
-                                    rate: parseFloat(rate),
-                                    quantity: parseInt(quantity),
-                                    amount: totalAmount,
-                                })
-                            }
+                            onClick={() => {
+                                if (mode === 'add') {
+                                    addProduct({
+                                        id: totalProducts + 1, // increment the product id by 1
+                                        description,
+                                        rate: parseFloat(rate),
+                                        quantity: parseInt(quantity),
+                                        amount: totalAmount,
+                                    });
+                                    router.replace('/invoice', undefined);
+                                } else if (mode === 'edit') {
+                                    //edit invoice
+                                }
+                            }}
                         >
-                            Add Product
+                            {mode === 'add' ? 'Add Product' : 'Update Product'}
                         </Button>
                     </DialogFooter>
                 </form>

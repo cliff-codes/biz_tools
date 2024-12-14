@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import {
     Table,
     TableBody,
@@ -13,10 +13,17 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Button } from '@/components/ui/button';
 import { Ellipsis } from 'lucide-react';
 import { useInvoiceStore } from '@/store/Invoice';
+import { useRouter } from 'next/navigation';
+import { InvoiceProduct } from '@/types';
 
-const ProductsTable = () => {
+const ProductsTable = ({ handleShowForm }: { handleShowForm: () => void }) => {
+    const router = useRouter();
     const products = useInvoiceStore((state) => state.products);
     const removeProduct = useInvoiceStore((state) => state.removeProduct);
+
+    const openEditModal = (productId: number) => {
+        router.push(`?modal=edit&id=${productId}`);
+    };
 
     return (
         <Table className="w-full">
@@ -45,7 +52,14 @@ const ProductsTable = () => {
                                     <Ellipsis />
                                 </PopoverTrigger>
                                 <PopoverContent className="border-2 border-slate-200 bg-white rounded-md w-auto h-auto flex gap-2">
-                                    <Button type="button" variant={'outline'}>
+                                    <Button
+                                        type="button"
+                                        variant={'outline'}
+                                        onClick={() => {
+                                            openEditModal(product.id);
+                                            handleShowForm();
+                                        }}
+                                    >
                                         edit
                                     </Button>
                                     <Button

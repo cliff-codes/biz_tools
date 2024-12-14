@@ -10,6 +10,7 @@ export type GenereateButtonProps = {
 };
 
 export type InvoiceProduct = {
+    id: number;
     description: string;
     rate?: number;
     quantity?: number;

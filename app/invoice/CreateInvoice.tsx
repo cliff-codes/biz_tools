@@ -11,7 +11,9 @@ import ProductsTable from './ProductsTable';
 import { Button } from '@/components/ui/button';
 import { PlusIcon } from 'lucide-react';
 import { ProductEntryModal } from './ProductEntryForm';
+import { useRouter } from 'next/navigation';
 const CreateInvoice = () => {
+    const router = useRouter();
     const {
         register,
         handleSubmit,
@@ -125,7 +127,10 @@ const CreateInvoice = () => {
                             <Button
                                 type="button"
                                 className="bg-[#605BFF] hover:bg-[#4b46e0]"
-                                onClick={handleShowForm}
+                                onClick={() => {
+                                    router.push('?modal=add');
+                                    handleShowForm();
+                                }}
                             >
                                 <PlusIcon />
                             </Button>
@@ -137,13 +142,18 @@ const CreateInvoice = () => {
                             <h4 className="text-gray-500 text-sm">No products</h4>
                         </div> */}
                         <div className="overflow-x-auto w-full min-w-[300px] border">
-                            <ProductsTable />
+                            <ProductsTable handleShowForm={handleShowForm} />
                         </div>
                     </div>
                     {showProductEntryForm && (
                         <ProductEntryModal
                             isOpen={showProductEntryForm}
-                            onClose={handleShowForm}
+                            onClose={() => {
+                                //replace the query parameters
+                                router.replace('/invoice', undefined);
+                                setShowProductEntryForm(false);
+                                handleShowForm();
+                            }}
                             onSubmit={() => console.log('submit form')}
                         />
                     )}

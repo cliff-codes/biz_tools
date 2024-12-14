@@ -3,6 +3,7 @@ import { create } from 'zustand';
 
 interface InvoiceStore {
     products: InvoiceProduct[] | [];
+    totalProducts: number;
     addProduct: (product: InvoiceProduct) => void;
     removeProduct: (index: number) => void;
     updateProduct: (index: number, product: InvoiceProduct) => void;
@@ -11,8 +12,14 @@ interface InvoiceStore {
 
 export const useInvoiceStore = create<InvoiceStore>((set) => ({
     products: [],
+    get totalProducts() {
+        return this.products.length;
+    },
     addProduct: (product) =>
-        set((state) => ({ ...state, products: [...(state.products || []), product] })),
+        set((state) => ({
+            ...state,
+            products: [...(state.products || []), { ...product, id: state.products.length + 1 }],
+        })),
     removeProduct: (index) =>
         set((state) => ({
             ...state,
