@@ -29,6 +29,28 @@ const CreateInvoice = () => {
         console.log(showProductEntryForm);
     };
 
+    const generateInvoiceId = (lastInvoiceId: string | null = null) => {
+        const date = new Date();
+        const formattedDate = date.toISOString().slice(0, 10).replace(/-/g, ''); // YYYYMMDD
+        const prefix = 'INV';
+
+        let newNumber = 1;
+
+        if (lastInvoiceId) {
+            const lastNumber = parseInt(lastInvoiceId.split('-')[2], 10);
+            if (!isNaN(lastNumber)) {
+                newNumber = lastNumber + 1;
+            }
+        }
+
+        const formattedNumber = newNumber.toString().padStart(3, '0');
+        return `${prefix}-${formattedDate}-${formattedNumber}`;
+    };
+
+    // Usage:
+    const lastInvoiceId = 'INV-20241213-045';
+    const newInvoiceId = generateInvoiceId(lastInvoiceId);
+
     return (
         <div className="w-full h-full bg-white rounded-md p-4">
             <h1 className="font-semibold text-lg text-center sm:text-2xl sm:text-left">
@@ -41,7 +63,12 @@ const CreateInvoice = () => {
                     <div className="flex justify-between place-items-center gap-1 flex-col sm:flex-row">
                         <div>
                             <label className="text-sm font-semibold">Invoice id</label>
-                            <Input className="w-full max-w-[280px]" placeholder="#000001" />
+                            <Input
+                                className="w-full max-w-[280px]"
+                                value={generateInvoiceId()}
+                                readOnly
+                                placeholder="#000001"
+                            />
                         </div>
                         <div className="flex flex-col">
                             <label className="text-sm font-semibold">

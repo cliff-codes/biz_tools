@@ -17,7 +17,7 @@ import {
 } from '@/components/ui/select';
 
 export function DatePickerWithPresets() {
-    const [date, setDate] = React.useState<Date>();
+    const [date, setDate] = React.useState<Date>(addDays(new Date(), 0));
     console.log(date);
 
     return (
