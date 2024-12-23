@@ -72,7 +72,7 @@ export function ProductEntryModal({
             setRate(productToBeUpdated.rate.toString());
             setQuantity(productToBeUpdated.quantity.toString());
         }
-    }, [id]);
+    }, [id, mode, productToBeUpdated]);
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>

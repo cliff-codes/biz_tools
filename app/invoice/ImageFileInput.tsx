@@ -1,9 +1,9 @@
 'use client';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { IoCamera } from 'react-icons/io5';
 
 const ImageFileInput = () => {
-    const [selectedFile, setSelectedFile] = useState<string | null>(null);
+    // const [selectedFile, setSelectedFile] = useState<string | null>(null);
     const inputRef = useRef<HTMLInputElement>(null);
     return (
         <div className="w-full flex flex-col justify-center place-items-center">

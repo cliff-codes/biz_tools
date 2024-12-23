@@ -5,7 +5,7 @@ import { Bell, LayoutGrid } from 'lucide-react';
 import SideNavBtn from './SideNavBtn';
 import { usePathname } from 'next/navigation';
 import { FaTicketSimple } from 'react-icons/fa6';
-import { IoLogOut, IoMail } from 'react-icons/io5';
+import { IoMail } from 'react-icons/io5';
 import Image from 'next/image';
 
 const SideNav = () => {

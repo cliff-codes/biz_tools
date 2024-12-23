@@ -43,11 +43,10 @@ const CreateInvoice = () => {
         handleSubmit,
         formState: { errors },
         watch,
-        reset,
     } = useForm();
 
-    const onSubmit = (data: any) => {
-        console.log(data);
+    const onSubmit = () => {
+        console.log('submitting ...');
     };
 
     const watchValues = watch();

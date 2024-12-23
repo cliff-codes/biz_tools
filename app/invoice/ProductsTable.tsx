@@ -1,8 +1,6 @@
-import React, { useReducer } from 'react';
 import {
     Table,
     TableBody,
-    TableCaption,
     TableCell,
     TableHead,
     TableHeader,

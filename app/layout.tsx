@@ -15,7 +15,7 @@ const geistMono = localFont({
     weight: '100 900',
 });
 
-export const nunito = Nunito({
+const nunito = Nunito({
     subsets: ['latin'],
     variable: '--font-nunito',
     display: 'swap',
