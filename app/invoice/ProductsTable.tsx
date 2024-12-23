@@ -33,7 +33,7 @@ const ProductsTable = ({ handleShowForm }: { handleShowForm: () => void }) => {
                         Descirption
                     </TableHead>
                     <TableHead className="text-white/90 font-semibold">Rate</TableHead>
-                    <TableHead className="text-white/90 font-semibold">QTY</TableHead>
+                    <TableHead className="text-white/90 font-semibold">QTY / Hours </TableHead>
                     <TableHead className="text-right text-white/90 font-semibold">Amount</TableHead>
                     <TableHead className="text-white/90 font-semibold">Actions</TableHead>
                 </TableRow>

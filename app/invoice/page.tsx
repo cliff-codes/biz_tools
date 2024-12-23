@@ -1,5 +1,6 @@
 import React from 'react';
 import CreateInvoice from './CreateInvoice';
+import InvoicePreview from './InvoicePreview';
 
 const InvoicePage = () => {
     return (
@@ -36,7 +37,7 @@ const InvoicePage = () => {
 
             {/* preview */}
             <div className="hidden xl:flex flex-1">
-                <h1>Invoice Preview</h1>
+                <InvoicePreview />
             </div>
         </div>
     );

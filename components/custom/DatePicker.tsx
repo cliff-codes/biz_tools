@@ -26,7 +26,7 @@ export function DatePickerWithPresets() {
                 <Button
                     variant={'outline'}
                     className={cn(
-                        'w-[240px] justify-start text-left font-normal',
+                        'w-[210px] justify-start text-left font-normal',
                         !date && 'text-muted-foreground'
                     )}
                 >
@@ -47,7 +47,7 @@ export function DatePickerWithPresets() {
                     </SelectContent>
                 </Select>
                 <div className="rounded-md border">
-                    <Calendar mode="single" selected={date} onSelect={setDate} />
+                    <Calendar mode="single" selected={date} onSelect={() => setDate} />
                 </div>
             </PopoverContent>
         </Popover>
