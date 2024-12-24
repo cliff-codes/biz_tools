@@ -30,7 +30,7 @@ const InvoicesPreviewTable = ({ invoices }: { invoices: SavedInvoice[] }) => {
                         <TableCell>{invoice.createdAt.toLocaleString()}</TableCell>
                         <TableCell>{invoice.businessName}</TableCell>
                         <TableCell>{invoice.recipientName}</TableCell>
-                        <TableCell className="flex place-items-center gap-2 justify-center ">
+                        <TableCell className="flex place-items-center justify-center ">
                             {/* Add action buttons here */}
                             <div className="p-2 rounded-lg hover:bg-slate-200">
                                 <Eye size={20} className="text-slate-500" />
