@@ -30,6 +30,6 @@ model Item {
     rate        Decimal
     totalAmount Decimal
     currency    String  @default("GHS")
-    invoiceId   String  @unique
+    invoiceId   String
     invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 }
