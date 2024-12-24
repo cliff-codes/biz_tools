@@ -8,18 +8,18 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { SavedInvoice } from '@/types';
-import { Button } from '../ui/button';
+import { Download, Eye, Trash } from 'lucide-react';
 
 const InvoicesPreviewTable = ({ invoices }: { invoices: SavedInvoice[] }) => {
     return (
         <Table>
-            <TableHeader>
+            <TableHeader className="bg-[#6e69ffdc]">
                 <TableRow>
-                    <TableHead>Invoice Id</TableHead>
-                    <TableHead>Created At</TableHead>
-                    <TableHead>From</TableHead>
-                    <TableHead>To</TableHead>
-                    <TableHead>Actions</TableHead>
+                    <TableHead className="text-white/90 font-semibold">Invoice Id</TableHead>
+                    <TableHead className="text-white/90 font-semibold">Created At</TableHead>
+                    <TableHead className="text-white/90 font-semibold">From</TableHead>
+                    <TableHead className="text-white/90 font-semibold">To</TableHead>
+                    <TableHead className="text-white/90 font-semibold">Actions</TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>
@@ -30,23 +30,21 @@ const InvoicesPreviewTable = ({ invoices }: { invoices: SavedInvoice[] }) => {
                         <TableCell>{invoice.createdAt.toLocaleString()}</TableCell>
                         <TableCell>{invoice.businessName}</TableCell>
                         <TableCell>{invoice.recipientName}</TableCell>
-                        <TableCell className="flex place-items-center gap-2 ">
+                        <TableCell className="flex place-items-center gap-2 justify-center ">
                             {/* Add action buttons here */}
-                            <Button>View</Button>
-                            <Button>Download</Button>
-                            <Button>Delete</Button>
+                            <div className="p-2 rounded-lg hover:bg-slate-200">
+                                <Eye size={20} className="text-slate-500" />
+                            </div>
+                            <div className="p-2 rounded-lg hover:bg-slate-200">
+                                <Download size={20} className="text-slate-500" />
+                            </div>
+                            <div className="p-2 rounded-lg hover:bg-slate-200">
+                                <Trash size={20} className="text-slate-500" />
+                            </div>
                         </TableCell>
                     </TableRow>
                 ))}
             </TableBody>
-
-            <tfoot>
-                <TableRow>
-                    <TableCell colSpan={5}>
-                        {/* Add pagination or infinite scroll here */}
-                    </TableCell>
-                </TableRow>
-            </tfoot>
         </Table>
     );
 };
