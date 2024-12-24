@@ -10,11 +10,13 @@ import { ProductEntryModal } from './ProductEntryForm';
 import { useRouter } from 'next/navigation';
 import { useInvoiceStore } from '@/store/Invoice';
 import { useForm } from 'react-hook-form';
+import { createInvoice } from '@/actions/invoice';
 const CreateInvoice = () => {
     const router = useRouter();
     const setBizInfo = useInvoiceStore((state) => state.setBuzinessInfo);
     const setRecipientInfo = useInvoiceStore((state) => state.setRecipientInfo);
     const generateInvoiceId = useInvoiceStore((state) => state.generateInvoiceNumber);
+    const products = useInvoiceStore((state) => state.products);
 
     const [showProductEntryForm, setShowProductEntryForm] = useState(false);
     const [bizInputInfo, setBizInputInfo] = useState({
@@ -59,7 +61,10 @@ const CreateInvoice = () => {
             </h1>
             <div className="flex flex-col gap-4 mt-8">
                 <ImageFileInput />
-                <form className="w-full flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className="w-full flex flex-col gap-5"
+                    onSubmit={handleSubmit((data) => createInvoice(data, products))}
+                >
                     {/* invoice id and date */}
                     <div className="flex justify-between place-items-center gap-1 flex-col sm:flex-row">
                         <div>
@@ -86,11 +91,11 @@ const CreateInvoice = () => {
                     <h3 className="font-semibold text-[15px] text-center sm:text-left">From:</h3>
                     <div className="flex justify-between place-items-center gap-1 flex-col sm:flex-row ">
                         <div>
-                            <label className="text-sm font-semibold">Company Name</label>
+                            <label className="text-sm font-semibold">Business Name</label>
                             <Input
                                 className="w-full max-w-[280px]"
-                                placeholder="company name"
-                                {...register('companyName', {
+                                placeholder="business name"
+                                {...register('businessName', {
                                     required: 'Company name is required',
                                     maxLength: 50,
                                 })}

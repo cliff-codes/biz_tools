@@ -10,10 +10,10 @@ datasource db {
 model Invoice {
     id               String   @id @default(cuid())
     invoiceId        String   @unique
-    companyName      String
-    companyEmail     String
-    companyAddress   String
-    companyPhone     String
+    businessName     String
+    businessEmail    String
+    businessAddress  String
+    businessPhone    String
     recipientName    String
     recipientEmail   String
     recipientAddress String
