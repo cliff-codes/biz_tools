@@ -146,7 +146,7 @@ export function ProductEntryModal({
                             Clear
                         </Button>
                         <Button
-                            type="submit"
+                            type="button"
                             className="w-full bg-[#605BFF] hover:bg-[#5050FF]"
                             onClick={() => {
                                 if (mode === 'add') {
@@ -157,7 +157,6 @@ export function ProductEntryModal({
                                         quantity: parseInt(quantity),
                                         amount: totalAmount,
                                     });
-                                    router.replace('/invoice', undefined);
                                 } else if (mode === 'edit') {
                                     if (!id) return;
                                     updateProduct(Number(id), {
@@ -167,8 +166,9 @@ export function ProductEntryModal({
                                         quantity: parseInt(quantity),
                                         amount: totalAmount,
                                     });
-                                    router.replace('/invoice', undefined);
                                 }
+                                onClose();
+                                router.replace('/invoice', undefined);
                             }}
                         >
                             {mode === 'add' ? 'Add Product' : 'Update Product'}
