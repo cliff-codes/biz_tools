@@ -16,3 +16,18 @@ export type InvoiceProduct = {
     quantity: number;
     amount: number;
 };
+
+export type SavedInvoice = {
+    id: string;
+    invoiceId: string;
+    businessName: string;
+    businessEmail: string;
+    businessAddress: string;
+    businessPhone: string;
+    recipientName: string;
+    recipientEmail: string;
+    recipientAddress: string;
+    recipientPhone: string;
+    createdAt: DateTime;
+    updatedAt: DateTime;
+}
