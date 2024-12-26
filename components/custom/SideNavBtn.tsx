@@ -24,9 +24,7 @@ const SideNavBtn = ({ btnName, btnIcon, route, counter }: SideNavBtnProps) => {
                     )}
                 </div>
                 <div className="font-semibold flex gap-3 place-items-center">
-                    <div className="hidden lg:flex transition-all duration-400 ease-in-out">
-                        {btnName}
-                    </div>
+                    <div className="">{btnName}</div>
                 </div>
             </button>
         </Link>

@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import SideNav from '@/components/custom/SideNav';
 import { Nunito } from 'next/font/google';
+import Nav from '@/components/custom/Nav';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -37,10 +38,15 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased text-slate-800  min-h-screen min-w-screen bg-slate-100 relative`}
             >
-                <div className="fixed left-0 top-0 bottom-0 w-[90px] lg:w-[300px] transition-all duration-duration-2200 ease-in-out">
-                    <SideNav />
-                </div>
-                <main className="w-full pl-[90px] lg:pl-[300px]">{children}</main>
+                <header>
+                    <Nav />
+                </header>
+                <main className="flex">
+                    <div className="hidden lg:block fixed left-0 top-0 bottom-0 w-64 bg-white shadow-md">
+                        <SideNav />
+                    </div>
+                    <div className="w-full lg:pl-64">{children}</div>
+                </main>
             </body>
         </html>
     );

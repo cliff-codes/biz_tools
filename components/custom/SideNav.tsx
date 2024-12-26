@@ -1,22 +1,36 @@
 'use client';
 import React from 'react';
 import Logo from './Logo';
-import { Bell, LayoutGrid } from 'lucide-react';
+import { Bell, ChevronLeft, LayoutGrid } from 'lucide-react';
 import SideNavBtn from './SideNavBtn';
 import { usePathname } from 'next/navigation';
 import { FaTicketSimple } from 'react-icons/fa6';
 import { IoMail } from 'react-icons/io5';
 import Image from 'next/image';
 
-const SideNav = () => {
+type NavProps = {
+    isSideNavOpen?: boolean;
+    closeSideNav?: () => void;
+};
+const SideNav = ({ isSideNavOpen, closeSideNav }: NavProps) => {
     const pathName = usePathname();
 
     return (
-        <nav className="w-full h-full flex flex-col justify-between py-2 bg-white">
+        <nav className="w-full h-full flex flex-col justify-between py-2 px-4 bg-white">
             <div className="w-full flex flex-col gap-3">
+                {isSideNavOpen && (
+                    <div className="w-full flex justify-end px-1">
+                        <button
+                            className="flex bg-slate-50 hover:bg-slate-200 transition-all .2 ease-linear py-1 px-2 rounded-md"
+                            onClick={closeSideNav}
+                        >
+                            <ChevronLeft /> <span className="font-semibold">close</span>
+                        </button>
+                    </div>
+                )}
                 <div className="w-full flex flex-col gap-4 place-items-center justify-center my-8">
                     <Logo size={60} />
-                    <h1 className="text-md font-semibold md:text-2xl text-center transition-all duration-2200 ease-in-out">
+                    <h1 className="text-md font-semibold md:text-2xl text-center transition-all duration-2200 ease-in-out cursor-pointer">
                         Biz Toolz
                     </h1>
                 </div>
