@@ -16,7 +16,7 @@ const SideNav = ({ isSideNavOpen, closeSideNav }: NavProps) => {
     const pathName = usePathname();
 
     return (
-        <nav className="w-full h-full flex flex-col justify-between py-2 px-4 bg-white">
+        <nav className="w-full h-full flex flex-col justify-between py-2 px-4 bg-white shadow-2xl">
             <div className="w-full flex flex-col gap-3">
                 {isSideNavOpen && (
                     <div className="w-full flex justify-end px-1">
@@ -51,6 +51,7 @@ const SideNav = ({ isSideNavOpen, closeSideNav }: NavProps) => {
                             />
                         }
                         btnName={'Dashboard'}
+                        closeSideNav={isSideNavOpen ? closeSideNav : undefined}
                     />
 
                     <SideNavBtn
@@ -66,6 +67,7 @@ const SideNav = ({ isSideNavOpen, closeSideNav }: NavProps) => {
                             />
                         }
                         btnName={'Invoice'}
+                        closeSideNav={isSideNavOpen ? closeSideNav : undefined}
                     />
 
                     <SideNavBtn
@@ -82,6 +84,7 @@ const SideNav = ({ isSideNavOpen, closeSideNav }: NavProps) => {
                             />
                         }
                         btnName="Mails"
+                        closeSideNav={isSideNavOpen ? closeSideNav : undefined}
                     />
 
                     <SideNavBtn
@@ -99,6 +102,7 @@ const SideNav = ({ isSideNavOpen, closeSideNav }: NavProps) => {
                         }
                         btnName="Notifications"
                         counter={1}
+                        closeSideNav={isSideNavOpen ? closeSideNav : undefined}
                     />
                 </div>
             </div>

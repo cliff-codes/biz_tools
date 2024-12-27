@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { SideNavBtnProps } from '@/types';
 
-const SideNavBtn = ({ btnName, btnIcon, route, counter }: SideNavBtnProps) => {
+const SideNavBtn = ({ btnName, btnIcon, route, counter, closeSideNav }: SideNavBtnProps) => {
     const pathName = usePathname();
     const isActive = route === pathName;
 
@@ -14,6 +14,7 @@ const SideNavBtn = ({ btnName, btnIcon, route, counter }: SideNavBtnProps) => {
                 className={`w-full flex gap-4 py-3 px-8 place-items-center  ${
                     isActive ? 'bg-gradient-to-r text-[#605BFF]' : 'text-gray-500'
                 } hover:bg-gradient-to-r from-[#e5e4ff] to-white transition-all duration-800 ease-in-out `}
+                onClick={closeSideNav && closeSideNav}
             >
                 <div className="flex relative">
                     <div className={`${isActive && 'text-[#605BFF]'}`}>{btnIcon}</div>

@@ -3,6 +3,8 @@ import GenerateButton from '@/components/custom/GenerateButton';
 import SearchBox from '@/components/custom/SearchBox';
 import InvoicesPreviewTable from '@/components/tables/InvoicesPreviewTable';
 import prisma from '@/lib/db';
+import { Button } from '@/components/ui/button';
+import { Plus } from 'lucide-react';
 
 async function getInvoices() {
     try {
@@ -51,9 +53,12 @@ export default async function Home() {
             <div className="flex flex-col gap-6">
                 <Suspense fallback={<div>Loading invoices...</div>}>
                     <div className="h-[300px] bg-white rounded-xl p-4">
-                        <h1 className="text-sm sm:text-base font-semibold w-full border-b pb-2">
-                            Invoice(s)
-                        </h1>
+                        <div className=" flex place-items-center border-b py-1">
+                            <h1 className="text-sm sm:text-base font-semibold w-full pb-2">
+                                {totalInvoices} Invoice(s) generated
+                            </h1>
+                            <GenerateButton route="/invoice" icon={<Plus />} text={'Add'} />
+                        </div>
 
                         {totalInvoices === 0 ? (
                             <div className="w-full h-full flex flex-col gap-2 place-items-center justify-center">

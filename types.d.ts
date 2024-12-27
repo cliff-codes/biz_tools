@@ -3,10 +3,13 @@ export type SideNavBtnProps = {
     btnIcon: React.ReactNode;
     route?: string;
     counter?: number;
+    closeSideNav?: () => void;
 };
 
 export type GenereateButtonProps = {
     route: string;
+    icon?: React.ReactNode;
+    text?: string;
 };
 
 export type InvoiceProduct = {

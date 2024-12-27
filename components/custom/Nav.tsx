@@ -7,8 +7,6 @@ const Nav = () => {
     const [openSideNav, setOpenSideNav] = useState(false);
     const toggleSideNav = () => setOpenSideNav(!openSideNav);
 
-    console.log(openSideNav);
-
     return (
         <nav className="px-4 h-[50px] flex place-items-center">
             {/* handburger menu */}
