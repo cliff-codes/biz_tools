@@ -14,6 +14,8 @@ async function getInvoices() {
             },
         });
 
+        console.log('invoices: ' + { ...invoices });
+
         return { invoices, error: null };
     } catch (error) {
         console.error('Failed to fetch invoices:', error);
@@ -27,6 +29,7 @@ export default async function Home() {
     const { invoices, error } = await getInvoices();
     const totalInvoices = invoices?.length ?? 0;
 
+    console.log(invoices, totalInvoices, error);
     // Handle error state
     if (error) {
         return (
