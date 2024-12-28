@@ -19,7 +19,9 @@ const InvoicesPreviewTable = ({ invoices }: { invoices: SavedInvoice[] }) => {
                     <TableHead className="text-white/90 font-semibold">Created At</TableHead>
                     <TableHead className="text-white/90 font-semibold">From</TableHead>
                     <TableHead className="text-white/90 font-semibold">To</TableHead>
-                    <TableHead className="text-white/90 font-semibold">Actions</TableHead>
+                    <TableHead className="text-white/90 font-semibold w-full flex justify-center place-items-center">
+                        Actions
+                    </TableHead>
                 </TableRow>
             </TableHeader>
             <TableBody>

@@ -56,7 +56,7 @@ export default async function Home() {
                             <h1 className="text-sm sm:text-base font-semibold w-full pb-2">
                                 {totalInvoices} Invoice(s) generated
                             </h1>
-                            <GenerateButton route="/invoice" icon={<Plus />} text={'Add'} />
+                            <GenerateButton route="/invoice" icon={<Plus />} text={'New'} />
                         </div>
 
                         {totalInvoices === 0 ? (
