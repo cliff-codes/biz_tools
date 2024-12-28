@@ -3,7 +3,6 @@ import GenerateButton from '@/components/custom/GenerateButton';
 import SearchBox from '@/components/custom/SearchBox';
 import InvoicesPreviewTable from '@/components/tables/InvoicesPreviewTable';
 import prisma from '@/lib/db';
-import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 
 async function getInvoices() {

@@ -15,6 +15,7 @@ import SubmitInvoiceBtn from './SubmitInvoiceBtn';
 import { useInvoiceStore } from '@/store/Invoice';
 import { createInvoice, generateInvoiceNumber } from '@/actions/invoice';
 import { invoiceFormSchema } from '@/zodSchemas/InvoiceSchemas';
+import CreatingInvoiceLoader from '@/components/custom/Loaders/CreatingInvoiceLoader';
 
 // Form schema
 type InvoiceFormData = z.infer<typeof invoiceFormSchema>;
@@ -107,7 +108,7 @@ const CreateInvoice = () => {
             const result = await createInvoice(data, products);
             console.log(result);
             if (result) {
-                router.push(`/`); // Redirect to home or invoice detail page
+                router.push(`/`); // Redirect to home, todo: later redirect to view invoice page
             }
         } catch (error) {
             console.error('Failed to create invoice:', error);
@@ -152,6 +153,7 @@ const CreateInvoice = () => {
 
     return (
         <div className="w-full h-full bg-white rounded-md p-4">
+            <CreatingInvoiceLoader showLoader={isSubmitting} />
             <h1 className="font-semibold text-lg text-center sm:text-2xl sm:text-left">
                 Create New Invoice
             </h1>
