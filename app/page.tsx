@@ -52,7 +52,7 @@ export default async function Home() {
 
             <div className="flex flex-col gap-6">
                 <Suspense fallback={<div>Loading invoices...</div>}>
-                    <div className="h-[300px] bg-white rounded-xl p-4">
+                    <div className="min-h-[300px] bg-white rounded-xl p-4">
                         <div className=" flex place-items-center border-b py-1">
                             <h1 className="text-sm sm:text-base font-semibold w-full pb-2">
                                 {totalInvoices} Invoice(s) generated
