@@ -1,29 +1,16 @@
 import { z } from 'zod';
 
-export const invoiceValidationSchema = z.object({
-    //business logo url
-    logoUrl: z.string().optional(),
-    // invoice details
-    customerName: z.string().min(3).max(50),
-    customerEmail: z.string().email(),
-    customerPhone: z.string().min(10).max(15),
-    invoiceDate: z.date(),
-
-    // invoice items
-    items: z.array(
-        z.object({
-            itemName: z.string().min(3).max(50),
-            itemQuantity: z.number(),
-            itemPrice: z.number().min(0.01),
-        })
-    ),
-
-    // invoice totals
-    subtotal: z.number().min(0.01),
-    taxRate: z.number().min(0).max(1),
-    discount: z.number().min(0).optional(),
-    total: z.number().min(0.01),
-
-    // payment details
-    paymentMethod: z.enum(['cash', 'card', 'online']),
+export const invoiceFormSchema = z.object({
+    invoiceId: z.string().min(1, 'Invoice ID is required'),
+    businessName: z.string().min(1, 'Business name is required').max(50),
+    businessEmail: z.string().email('Invalid email format'),
+    businessAddress: z.string().min(1, 'Business address is required').max(100),
+    businessPhone: z.string().min(1, 'Business phone is required'),
+    recipientName: z.string().min(1, 'Recipient name is required').max(50),
+    recipientEmail: z.string().email('Invalid email format'),
+    recipientAddress: z.string().min(1, 'Recipient address is required').max(100),
+    recipientPhone: z.string().min(1, 'Recipient phone is required'),
 });
+
+
+    

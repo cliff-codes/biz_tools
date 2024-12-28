@@ -14,7 +14,7 @@ import {
 import { useInvoiceStore } from '@/store/Invoice';
 
 const InvoicePreview = () => {
-    const { buzinessInfo, recipientInfo, generateInvoiceNumber, products, totalProductsCost } =
+    const { buzinessInfo, recipientInfo, products, totalProductsCost, invoiceId } =
         useInvoiceStore();
 
     const formattedDate = () => {
@@ -67,7 +67,7 @@ const InvoicePreview = () => {
                         <h1 className="font-semibold text-5xl">Invoice</h1>
                         <div>
                             <h4 className="font-semibold">INVOICE NO.</h4>
-                            <div>{generateInvoiceNumber()}</div>
+                            <div>{invoiceId}</div>
                         </div>
                         <div>
                             <h4 className="font-semibold">INVOICE DATE</h4>

@@ -1,3 +1,4 @@
+
 import { InvoiceProduct } from '@/types';
 import { create } from 'zustand';
 
@@ -13,6 +14,7 @@ interface BizInfo extends ReceipientInfo {
 }
 
 interface InvoiceStore {
+    invoiceId: string;
     products: InvoiceProduct[] | [];
     totalProducts: number;
     addProduct: (product: InvoiceProduct) => void;
@@ -24,12 +26,13 @@ interface InvoiceStore {
     recipientInfo: ReceipientInfo;
     setBuzinessInfo: (info: BizInfo) => void;
     setRecipientInfo: (info: ReceipientInfo) => void;
-    generateInvoiceNumber: () => string;
+    setInvoiceId: (id: string) => void;
     totalProductsCost: () => number;
 }
 
 export const useInvoiceStore = create<InvoiceStore>((set, get) => ({
     products: [],
+    invoiceId: "0000000",
     get totalProducts() {
         return this.products.length;
     },
@@ -63,6 +66,7 @@ export const useInvoiceStore = create<InvoiceStore>((set, get) => ({
     },
     clearProducts: () => set((state) => ({ ...state, products: [] })),
 
+    setInvoiceId: (id) => set((state) => ({...state, invoiceId: id.toString() })),
     buzinessInfo: {
         name: 'Your Business Name',
         address: 'Your Address',
@@ -76,15 +80,5 @@ export const useInvoiceStore = create<InvoiceStore>((set, get) => ({
         email: 'Recipient Email',
     },
     setBuzinessInfo: (info) => set((state) => ({ ...state, buzinessInfo: { ...info } })),
-    setRecipientInfo: (info) => set((state) => ({ ...state, recipientInfo: { ...info } })),
-    generateInvoiceNumber: () => {
-        const date = new Date();
-        const formattedDate = date.toISOString().slice(0, 10).replace(/-/g, '');
-        const prefix = 'INV';
-
-        let newNumber = 1;
-
-        const formattedNumber = newNumber.toString().padStart(3, '0');
-        return `${prefix}-${formattedDate}-${formattedNumber}`;
-    }
+    setRecipientInfo: (info) => set((state) => ({ ...state, recipientInfo: { ...info } }))
 }));
