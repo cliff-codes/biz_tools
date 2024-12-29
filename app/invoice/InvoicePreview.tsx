@@ -23,7 +23,7 @@ const InvoicePreview = () => {
     };
 
     return (
-        <div className="w-full bg-white/90 rounded-[11px] px-4 py-4 flex flex-col gap-6">
+        <div className="w-full bg-white rounded-[11px] px-4 py-4 flex flex-col gap- z-50">
             <div className="w-full flex justify-between place-items-center">
                 <h1 className="font-bold text-[24px]">Preview</h1>
                 <div className="flex place-items-center gap-2">
