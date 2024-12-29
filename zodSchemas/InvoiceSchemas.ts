@@ -12,5 +12,7 @@ export const invoiceFormSchema = z.object({
     recipientPhone: z.string().min(1, 'Recipient phone is required'),
 });
 
-
-    
+// Validation schema for invoice ID
+export const deleteInvoiceSchema = z.object({
+    id: z.string().cuid({ message: 'Invalid invoice ID format' }),
+});

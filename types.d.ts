@@ -34,3 +34,10 @@ export type SavedInvoice = {
     createdAt: DateTime;
     updatedAt: DateTime;
 }
+
+export type DeleteInvoiceResponse = {
+    success: boolean;
+    message: string;
+    error?: string;
+    deletedInvoice?: any;
+};

@@ -4,6 +4,8 @@ import './globals.css';
 import SideNav from '@/components/custom/SideNav';
 import { Nunito } from 'next/font/google';
 import Nav from '@/components/custom/Nav';
+import 'react-toastify/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 const geistSans = localFont({
     src: './fonts/GeistVF.woff',
@@ -38,6 +40,7 @@ export default function RootLayout({
             <body
                 className={`${geistSans.variable} ${geistMono.variable} ${nunito.variable} antialiased text-slate-800  min-h-screen min-w-screen bg-slate-100 relative`}
             >
+                <ToastContainer />
                 <header>
                     <Nav />
                 </header>
