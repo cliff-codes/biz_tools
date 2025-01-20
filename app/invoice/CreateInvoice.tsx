@@ -16,6 +16,7 @@ import { useInvoiceStore } from '@/store/Invoice';
 import { createInvoice, generateInvoiceNumber, saveInvoicePdf } from '@/actions/invoice';
 import { invoiceFormSchema } from '@/zodSchemas/InvoiceSchemas';
 import CreatingInvoiceLoader from '@/components/custom/Loaders/CreatingInvoiceLoader';
+import toast from "react-toastify";
 
 // Form schema
 type InvoiceFormData = z.infer<typeof invoiceFormSchema>;
@@ -29,6 +30,7 @@ const CreateInvoice = () => {
         setInvoiceId,
         generateInvoicePdf,
         recipientInfo,
+        clearProducts
     } = useInvoiceStore();
 
     // Form initialization with Zod resolver
@@ -50,7 +52,7 @@ const CreateInvoice = () => {
     const {
         register,
         handleSubmit,
-        formState: { errors },
+        formState: { errors, isValid },
         setValue,
         watch,
     } = form;
@@ -117,13 +119,31 @@ const CreateInvoice = () => {
         setRecipientInfo,
     ]);
 
+    console.log("isValid: ", isValid);
+    
+
     // Form submission handler
     const onSubmit = async (data: InvoiceFormData) => {
+
+        const formData = data
+
+        if (!isValid) {
+            toast.error('Please fill in all required fields', {
+                position: 'top-center',
+            })
+            return
+        }
+
+        if(products.length === 0) {
+            toast.error('Please add at least one product', {
+                position: 'top-center',
+            })
+            return
+        }
+
+
         try {
             setIsSubmitting(true);
-            if (products.length === 0) {
-                throw new Error('At least one product is required');
-            }
 
             const result = await createInvoice(data, products);
             const pdfBlob = await generateInvoicePdf();
@@ -179,6 +199,11 @@ const CreateInvoice = () => {
             )}
         </div>
     );
+
+    //clear products anytime component mounts
+    useEffect(() => {
+        clearProducts();
+    }, []);
 
     return (
         <div className="w-full h-full bg-white rounded-md p-4">

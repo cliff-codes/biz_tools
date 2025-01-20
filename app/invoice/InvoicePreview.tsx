@@ -30,7 +30,7 @@ const InvoicePreview = () => {
     return (
         <div className="w-full bg-white rounded-[11px] px-4 py-4 flex flex-col gap- z-50">
             <div className="w-full flex justify-between place-items-center">
-                <h1 className="font-bold text-[24px]">Preview {recipientInfo.name}</h1>
+                <h1 className="font-bold text-[24px] py-2">Preview</h1>
                 <div className="flex place-items-center gap-2">
                     <AiFillPrinter
                         fill="#605BFF"
