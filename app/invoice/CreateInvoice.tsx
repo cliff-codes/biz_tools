@@ -13,7 +13,7 @@ import ProductsTable from './ProductsTable';
 import ImageFileInput from './ImageFileInput';
 import SubmitInvoiceBtn from './SubmitInvoiceBtn';
 import { useInvoiceStore } from '@/store/Invoice';
-import { createInvoice, generateInvoiceNumber } from '@/actions/invoice';
+import { createInvoice, generateInvoiceNumber, saveInvoicePdf } from '@/actions/invoice';
 import { invoiceFormSchema } from '@/zodSchemas/InvoiceSchemas';
 import CreatingInvoiceLoader from '@/components/custom/Loaders/CreatingInvoiceLoader';
 
@@ -27,6 +27,8 @@ const CreateInvoice = () => {
         setBuzinessInfo: setBizInfo,
         setRecipientInfo,
         setInvoiceId,
+        generateInvoicePdf,
+        recipientInfo,
     } = useInvoiceStore();
 
     // Form initialization with Zod resolver
@@ -79,23 +81,51 @@ const CreateInvoice = () => {
     }, [setValue]);
 
     // Update global state when form values change
-    const formValues = watch();
+    const businessName = watch('businessName');
+    const businessEmail = watch('businessEmail');
+    const businessAddress = watch('businessAddress');
+    const businessPhone = watch('businessPhone');
+    const recipientName = watch('recipientName');
+    const recipientEmail = watch('recipientEmail');
+    const recipientAddress = watch('recipientAddress');
+    const recipientPhone = watch('recipientPhone');
+
     useEffect(() => {
         setBizInfo({
-            name: formValues.businessName,
-            email: formValues.businessEmail,
-            address: formValues.businessAddress,
-            phone: formValues.businessPhone,
+            name: businessName,
+            email: businessEmail,
+            address: businessAddress,
+            phone: businessPhone,
         });
 
         setRecipientInfo({
-            name: formValues.recipientName,
-            email: formValues.recipientEmail,
-            address: formValues.recipientAddress,
-            phone: formValues.recipientPhone,
+            name: recipientName,
+            email: recipientEmail,
+            address: recipientAddress,
+            phone: recipientPhone,
         });
-    }, [setBizInfo, setRecipientInfo]);
-    console.log(formValues);
+    }, [
+        businessName,
+        businessEmail,
+        businessAddress,
+        businessPhone,
+        recipientName,
+        recipientEmail,
+        recipientAddress,
+        recipientPhone,
+        setBizInfo,
+        setRecipientInfo,
+    ]);
+    console.log('recipientInfo: ', {
+        businessName,
+        businessEmail,
+        businessAddress,
+        businessPhone,
+        recipientName,
+        recipientEmail,
+        recipientAddress,
+        recipientPhone,
+    });
 
     // Form submission handler
     const onSubmit = async (data: InvoiceFormData) => {
@@ -106,6 +136,11 @@ const CreateInvoice = () => {
             }
 
             const result = await createInvoice(data, products);
+            const pdfBlob = await generateInvoicePdf();
+            if (!pdfBlob) {
+                throw new Error('Error generating invoice pdf to save');
+            }
+            const savedInvoicePdf = await saveInvoicePdf(pdfBlob, data.invoiceId);
             console.log(result);
             if (result) {
                 router.push(`/`); // Redirect to home, todo: later redirect to view invoice page
@@ -127,6 +162,10 @@ const CreateInvoice = () => {
             router.replace('/invoice');
         }
         setShowProductEntryForm(false);
+    };
+
+    const hanldeGeneratePdfAndUpload = async () => {
+        const pdfBlob = await generateInvoicePdf();
     };
 
     // Render form fields helper

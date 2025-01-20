@@ -22,10 +22,15 @@ const InvoicePreview = () => {
         return date.toLocaleDateString('en-US');
     };
 
+    console.log(" this is recipientInfo: ", recipientInfo);
+    //console.log("biz Info: ", buzinessInfo)
+
+    console.log("recipientName: ", recipientInfo.name);
+
     return (
         <div className="w-full bg-white rounded-[11px] px-4 py-4 flex flex-col gap- z-50">
             <div className="w-full flex justify-between place-items-center">
-                <h1 className="font-bold text-[24px]">Preview</h1>
+                <h1 className="font-bold text-[24px]">Preview {recipientInfo.name}</h1>
                 <div className="flex place-items-center gap-2">
                     <AiFillPrinter
                         fill="#605BFF"
@@ -39,7 +44,10 @@ const InvoicePreview = () => {
             </div>
 
             {/* invoice preview */}
-            <div className="w-full bg-slate-50 rounded-md h-auto p-3 flex flex-col gap-20">
+            <div
+                id="pdf-section"
+                className="w-full bg-slate-50 rounded-md h-auto p-3 flex flex-col gap-20"
+            >
                 <div className="flex justify-between place-items-center">
                     {/* your logo */}
                     <div className="">

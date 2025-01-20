@@ -1,6 +1,8 @@
 
 import { InvoiceProduct } from '@/types';
 import { create } from 'zustand';
+import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
 
 interface ReceipientInfo {
     name: string;
@@ -28,6 +30,7 @@ interface InvoiceStore {
     setRecipientInfo: (info: ReceipientInfo) => void;
     setInvoiceId: (id: string) => void;
     totalProductsCost: () => number;
+    generateInvoicePdf: () => Promise<Blob | undefined>;
 }
 
 export const useInvoiceStore = create<InvoiceStore>((set, get) => ({
@@ -68,17 +71,33 @@ export const useInvoiceStore = create<InvoiceStore>((set, get) => ({
 
     setInvoiceId: (id) => set((state) => ({...state, invoiceId: id.toString() })),
     buzinessInfo: {
-        name: 'Your Business Name',
-        address: 'Your Address',
-        phone: 'Your Phone Number',
-        email: 'Your Email',
+        name: '',
+        address: '',
+        phone: '',
+        email: '',
     },
     recipientInfo: {
-        name: 'Recipient Name',
-        address: 'Recipient Address',
-        phone: 'Recipient Phone',
-        email: 'Recipient Email',
+        name: '',
+        address: '',
+        phone: '',
+        email: '',
     },
     setBuzinessInfo: (info) => set((state) => ({ ...state, buzinessInfo: { ...info } })),
-    setRecipientInfo: (info) => set((state) => ({ ...state, recipientInfo: { ...info } }))
+    setRecipientInfo: (info) => set((state) => ({ ...state, recipientInfo: { ...info } })),
+    generateInvoicePdf: async () => {
+        const section = document.getElementById("pdf-section");
+        if (!section) return;
+
+        const canvas = await html2canvas(section)
+        const imgData = canvas.toDataURL("image/png");
+
+        // Generate pdf 
+        const pdf = new jsPDF();
+        const imgWidth = 190;
+        const imgHeight = (canvas.height * imgWidth) / canvas.width
+
+        pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
+        const pdfBlob = pdf.output("blob")
+        return pdfBlob
+    }
 }));

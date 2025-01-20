@@ -10,8 +10,8 @@ datasource db {
 }
 
 model Invoice {
-    id               String   @id @default(cuid())
-    invoiceId        String   @unique
+    id               String        @id @default(cuid())
+    invoiceId        String        @unique
     businessName     String
     businessEmail    String
     businessAddress  String
@@ -21,8 +21,9 @@ model Invoice {
     recipientAddress String
     recipientPhone   String
     items            Item[]
-    createdAt        DateTime @default(now())
-    updatedAt        DateTime @updatedAt
+    pdfDocuments     PdfDocument[]
+    createdAt        DateTime      @default(now())
+    updatedAt        DateTime      @updatedAt
 }
 
 model Item {
@@ -34,4 +35,12 @@ model Item {
     currency    String  @default("GHS")
     invoiceId   String
     invoice     Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}
+
+model PdfDocument {
+    id        String   @id @default(cuid())
+    invoiceId String
+    invoice   Invoice  @relation(fields: [invoiceId], references: [invoiceId], onDelete: Cascade)
+    content   Bytes
+    createdAt DateTime @default(now())
 }

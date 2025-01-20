@@ -152,3 +152,21 @@ export const generateInvoiceNumber = async () => {
     const sequence = String(count + 1).padStart(4, '0');
     return `${prefix}-${year}-${sequence}`;
 };
+
+export const saveInvoicePdf = async(pdfBlob: Blob, invoiceId: string) => {
+    try {
+        const arrayBuffer = await pdfBlob.arrayBuffer();
+        const pdfBuffer = Buffer.from(arrayBuffer);
+        const savedPdf = await prisma.pdfDocument.create({
+            data: {
+                invoiceId,
+                content: pdfBuffer
+            },
+        });
+        console.log('savedPdf: ', savedPdf);
+        return savedPdf;
+    } catch (error) {
+        console.error("Error Saving PDF: ", error);
+        throw error;
+    }
+}
