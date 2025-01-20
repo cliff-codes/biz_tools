@@ -76,7 +76,7 @@ export function ProductEntryModal({
 
     return (
         <Dialog open={isOpen} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[600px] p-6">
+            <DialogContent className="sm:max-w-[600px] p-6 m-3 sm:m-1 md:m-0">
                 <DialogHeader>
                     <DialogTitle className="text-2xl font-bold">Add New Product</DialogTitle>
                     <DialogDescription>

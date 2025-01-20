@@ -116,16 +116,6 @@ const CreateInvoice = () => {
         setBizInfo,
         setRecipientInfo,
     ]);
-    console.log('recipientInfo: ', {
-        businessName,
-        businessEmail,
-        businessAddress,
-        businessPhone,
-        recipientName,
-        recipientEmail,
-        recipientAddress,
-        recipientPhone,
-    });
 
     // Form submission handler
     const onSubmit = async (data: InvoiceFormData) => {
@@ -199,18 +189,21 @@ const CreateInvoice = () => {
 
             <div className="flex flex-col gap-4 mt-8">
                 <ImageFileInput />
-                <form className="w-full flex flex-col gap-5" onSubmit={handleSubmit(onSubmit)}>
+                <form
+                    className="w-full flex flex-col place-items-center gap-8"
+                    onSubmit={handleSubmit(onSubmit)}
+                >
                     {/* Invoice ID and Date */}
-                    <div className="flex justify-between place-items-center gap-1 flex-col sm:flex-row">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {renderFormField('Invoice ID', 'invoiceId', 'text', '#000001')}
-                        <div className="flex flex-col">
+                        <div className="flex flex-col gap-y-1">
                             <label className="text-sm font-semibold">Date of issuing invoice</label>
                             <DatePickerWithPresets />
                         </div>
                     </div>
 
                     {/* Business Details */}
-                    <h3 className="font-semibold text-[15px] text-center sm:text-left">From:</h3>
+                    <h3 className="font-semibold text-[15px] text-center sm:text-left">From</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {renderFormField('Business Name', 'businessName', 'text', 'Business name')}
                         {renderFormField('Email', 'businessEmail', 'email', 'name@business.com')}
@@ -219,7 +212,7 @@ const CreateInvoice = () => {
                     </div>
 
                     {/* Recipient Details */}
-                    <h3 className="font-semibold text-[15px] text-center sm:text-left">To:</h3>
+                    <h3 className="font-semibold text-[15px] text-center sm:text-left">To</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                         {renderFormField('Full Name', 'recipientName', 'text', 'John Doe')}
                         {renderFormField(
