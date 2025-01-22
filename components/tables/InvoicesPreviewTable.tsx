@@ -24,13 +24,35 @@ import {
 
 import { SavedInvoice } from '@/types';
 import { Download, Eye, Loader, Trash } from 'lucide-react';
-import { deleteInvoice } from '@/actions/invoice';
+import { deleteInvoice, getSavedInvoicePdfBlob } from '@/actions/invoice';
 import { useToast } from '@/hooks/use-toast';
 import { toast } from 'react-toastify';
 
 const InvoicesPreviewTable = ({ invoices }: { invoices: SavedInvoice[] }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [dialogOpenInvoiceId, setDialogOpenInvoiceId] = useState<string | null>(null);
+    const [pdfBlobContent, setPdfBlobContent] = useState<Blob | null>(null);
+    const [pdfViewError, setPdfViewError] = useState<string | null>(null)
+
+    const handleInvoicePdfFromBlog = async() => {
+        console.log("viewing saved invoice pdf: ")
+        const res = await getSavedInvoicePdfBlob()
+        if(res.error){
+            setPdfViewError("Error viewing pdf please try again")
+            return;
+        }
+        setPdfBlobContent(res.res?.content)
+        if(res.res?.content){
+            const pdfBlob = new Blob([res.res.content], {type: "application/pdf"})
+            console.log(pdfBlob)
+            handlePdfView(pdfBlob)
+        }
+    }
+
+    const handlePdfView = (pdfBlob: Blob) => {
+        const url = URL.createObjectURL(pdfBlob)
+        window.open(url, '_blank')
+    }
 
     const handleDeleteInvoice = async (invoiceId: string) => {
         console.log('Invoice Id: ' + invoiceId);
@@ -78,7 +100,11 @@ const InvoicesPreviewTable = ({ invoices }: { invoices: SavedInvoice[] }) => {
                         <TableCell>{invoice.businessName}</TableCell>
                         <TableCell>{invoice.recipientName}</TableCell>
                         <TableCell className="flex place-items-center justify-center ">
-                            <div className="p-2 rounded-lg hover:bg-slate-200">
+                            <div className="p-2 rounded-lg hover:bg-slate-200" 
+                            onClick={ () => {
+                                    console.log("view invoice")
+                                    handleInvoicePdfFromBlog(invoice.invoiceId)
+                                }}>
                                 <Eye size={20} className="text-slate-500" />
                             </div>
                             <div className="p-2 rounded-lg hover:bg-slate-200">

@@ -44,8 +44,8 @@ const InvoicePreview = () => {
             </div>
 
             {/* invoice preview */}
+            <div id='pdf-section'>
             <div
-                id="pdf-section"
                 className="w-full bg-slate-50 rounded-md h-auto p-3 flex flex-col gap-20"
             >
                 <div className="flex justify-between place-items-center">
@@ -151,6 +151,7 @@ const InvoicePreview = () => {
                     <p>www.yourcompany.com</p>
                 </div> */}
             </div>
+        </div>
         </div>
     );
 };

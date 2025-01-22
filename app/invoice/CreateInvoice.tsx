@@ -151,7 +151,8 @@ const CreateInvoice = () => {
                 throw new Error('Error generating invoice pdf to save');
             }
             const savedInvoicePdf = await saveInvoicePdf(pdfBlob, data.invoiceId);
-            console.log(result);
+            console.log("Saved invoice pdf : ", savedInvoicePdf)
+            console.log("creating invoice response: ", result);
             if (result) {
                 router.push(`/`); // Redirect to home, todo: later redirect to view invoice page
             }

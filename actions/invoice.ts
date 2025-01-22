@@ -170,3 +170,16 @@ export const saveInvoicePdf = async(pdfBlob: Blob, invoiceId: string) => {
         throw error;
     }
 }
+
+export const getSavedInvoicePdfBlob = async(invoiceId: string) => {
+    try {
+       const res = await prisma.pdfDocument.findFirst(invoiceId) 
+       console.log("saved pdf blob: ", res)
+       return {res, error: null}
+    } catch (error) {
+       console.log("Error getting the saved pdf's blob: ", error) 
+       return {error: error}
+    }
+}
+
+
